@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/routes/app_pages.dart';
@@ -17,6 +18,11 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light));
+
     return Scaffold(
       body: SafeArea(
         top: false,
@@ -47,6 +53,7 @@ class LoginView extends GetView<LoginController> {
                     ),
 
 
+                    /// Logo
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Card(
@@ -54,10 +61,15 @@ class LoginView extends GetView<LoginController> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         elevation: 10,
-                        child: Image.asset(/*AppImages.rslLogo*/"assets/png_jpg_images/rsl_logo.jpg",
-                          width: SizeConfig.blockSizeHorizontal * 30,
-                          height: SizeConfig.blockSizeHorizontal *
-                              30,),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20), // Match card radius
+                          child: Image.asset(
+                            AppImages.rslLogo,
+                            width: SizeConfig.blockSizeHorizontal * 30,
+                            height: SizeConfig.blockSizeHorizontal * 30,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     )
                   ],

@@ -3,8 +3,8 @@
 class AppImages{
 
   ///*************** PNG/JPG Images *********************************************************///
-  static const String loginTopBackground = "assets/png_jpg_images/login_top_background.png";
-  static const String rslLogo = "assets/png_jpg_images/rsl_logo.jpg";
+  static const String loginTopBackground = "assets/images/jpg_png_imgs/login_top_background.png";
+  static const String rslLogo = "assets/images/jpg_png_imgs/rsl_logo.jpg";
 
 
 

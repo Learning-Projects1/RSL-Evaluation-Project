@@ -63,13 +63,14 @@ class ReusableButton extends StatelessWidget {
               : width ?? size.width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              gradient: const LinearGradient(
-                  colors: [
-                    AppColors.primaryRed,
-                    AppColors.primaryRed,
-                    AppColors.secondaryRed,
-                    //add more colors
-                  ]),
+              // gradient: const LinearGradient(
+              //     colors: [
+              //       AppColors.darkPurple,
+              //       AppColors.primaryRed,
+              //       AppColors.secondaryRed,
+              //       //add more colors
+              //     ]),
+              color: AppColors.lightPurple,
               boxShadow: hasShadow!
                   ? [
                 BoxShadow(
