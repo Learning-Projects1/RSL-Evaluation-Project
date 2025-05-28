@@ -9,7 +9,6 @@ class AppImages{
 
 
 ///*************** SVG Images *********************************************************///
-//   static const String techorbitLogoVector = "assets/images/svg_imgs/techorbit_logo.svg";
 
 
 

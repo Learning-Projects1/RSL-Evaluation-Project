@@ -45,10 +45,10 @@ class ReusableButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return loading == true
-        ? Row(
+        ? const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: const [
+      children: [
         CupertinoActivityIndicator(
           color: Colors.black,
           radius: 16,
