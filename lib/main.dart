@@ -13,7 +13,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
-  await Hive.openBox<AttendanceModel>('attendanceBox');
   registerHiveAdapters();
 
   // Screen rotation disabled

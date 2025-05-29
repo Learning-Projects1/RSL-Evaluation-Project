@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/utils/resources/helper_functions/app_preferences.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/utils/resources/other/FlushBar.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/utils/resources/other/constants.dart';
@@ -19,6 +20,22 @@ class AttendanceController extends GetxController {
   double targetLng = 0.0;
   double distanceInMeters = 0.0;
 
+  late Box attendanceBox;
+
+  @override
+  void onInit(){
+    super.onInit();
+
+    openBox();
+
+  }
+
+  Future openBox() async {
+    var dir = await getApplicationDocumentsDirectory();
+    Hive.init(dir.path);
+    attendanceBox = await Hive.openBox('attendanceBox');
+    return;
+  }
 
   Future<void> onMarkAttendanceClicked() async {
 
@@ -157,10 +174,11 @@ class AttendanceController extends GetxController {
       email: userEmail,
     );
 
+    await attendanceBox.add(attendance);
+  }
 
-    final box = Hive.box<AttendanceModel>('attendanceBox');
-
-    await box.add(attendance);
+  void logoutUser() {
+    // AppPreferences.getPrefString(key)
   }
 
 

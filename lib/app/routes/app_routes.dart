@@ -8,6 +8,7 @@ abstract class Routes {
   static const ATTENDANCE = _Paths.ATTENDANCE;
   static const HISTORY = _Paths.HISTORY;
   static const SPLASH = _Paths.SPLASH;
+  static const MAP = _Paths.MAP;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const ATTENDANCE = '/attendance';
   static const HISTORY = '/history';
   static const SPLASH = '/splash';
+  static const MAP = '/map';
 }

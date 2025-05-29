@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:rls_evaluation_project_supervisor_attendance_app/app/modules/map/bindings/map_bindings.dart';
+import 'package:rls_evaluation_project_supervisor_attendance_app/app/modules/map/views/map_screen_view.dart';
 
 import '../modules/attendance/bindings/attendance_binding.dart';
 import '../modules/attendance/views/attendance_view.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAP,
+      page: () => const MapScreenView(),
+      binding: MapScreenBindings(),
     ),
   ];
 }

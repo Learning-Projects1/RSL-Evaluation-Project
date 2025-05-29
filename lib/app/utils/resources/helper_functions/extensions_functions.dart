@@ -3,45 +3,6 @@
 import 'package:flutter/cupertino.dart';
 
 extension StringExtension on String {
-
-  String getErrorMessage() {
-    try{
-      var messageArr = split(':');
-
-      var message = "";
-
-      messageArr.asMap().forEach((index, value) {
-        if(index != 0){
-          if(messageArr.length-1 == index){
-            message +=value;
-          }
-
-          // if(messageArr.length-1 == index){
-          //   message +=value;
-          // }else{
-          //   message +="$value:";
-          // }
-        }
-      });
-
-      return message;
-
-    }catch(e){
-      return "";
-    }
-  }
-
-
-  String getStatusCode(){
-    try{
-      var messageArr = split(':');
-      return messageArr[0].toString();
-    }catch(e){
-      return "";
-    }
-  }
-
-
   String capitalize() {
     if(this != "" && this != "null" && this != "Null" && this != null){
       return "${this[0].toUpperCase()}${substring(1)}";
