@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/routes/app_pages.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/utils/resources/custom_widgets/reusable_button.dart';
 
-import '../../../utils/resources/app_images.dart';
-import '../../../utils/resources/app_size_config.dart';
+import '../../../utils/resources/other/app_images.dart';
 import '../../../utils/resources/custom_widgets/reusable_text.dart';
 import '../../../utils/resources/custom_widgets/reusable_text_form_field.dart';
-import '../../../utils/resources/widget_functions.dart';
+import '../../../utils/resources/other/app_size_config.dart';
+import '../../../utils/resources/other/widget_functions.dart';
 import '../../../utils/themes/theme_colors.dart';
 import '../controllers/login_controller.dart';
 
@@ -85,11 +85,12 @@ class LoginView extends GetView<LoginController> {
                     addVerticalSpace(70),
 
 
-                    const ReusableTextFormField(
+                    ReusableTextFormField(
                       hintText: "Email",
                       inputType: TextInputType.emailAddress,
                       filled: true,
                       filledColor: AppColors.grey200,
+                      controller: controller.emailController,
                       maxLength: 30,
                     ),
 
@@ -97,13 +98,23 @@ class LoginView extends GetView<LoginController> {
                     addVerticalSpace(16),
 
 
-                    const ReusableTextFormField(
-                      hintText: "Password",
-                      inputType: TextInputType.text,
-                      filled: true,
-                      isObscure: true,
-                      filledColor: AppColors.grey200,
-                      maxLength: 30,
+                    Obx(
+                        ()=> ReusableTextFormField(
+                        hintText: "Password",
+                        inputType: TextInputType.text,
+                        filled: true,
+                        isObscure: controller.obscurePassword.value,
+                        controller: controller.passwordController,
+                        filledColor: AppColors.grey200,
+                        suffixIcon: GestureDetector(
+                            onTap: (){
+                              controller.obscurePassword.value = !controller.obscurePassword.value;
+                            },
+                            child : controller.obscurePassword.value == true ? const Icon(Icons.visibility, color: AppColors.grey400) :
+                            Icon(Icons.visibility, color: AppColors.primaryBlue)
+                        ),
+                        maxLength: 30,
+                      ),
                     ),
 
                     addVerticalSpace(12),
@@ -123,7 +134,7 @@ class LoginView extends GetView<LoginController> {
 
                     ///Login button
                     ReusableButton(onPressed: () {
-                      // Get.toNamed(Routes.LOGIN);
+                      controller.onLoginClicked();
                     }, labelText: "Login"),
 
 

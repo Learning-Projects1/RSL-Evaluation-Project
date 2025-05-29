@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../themes/theme_colors.dart';
-import '../app_fonts.dart';
+import '../other/app_fonts.dart';
 
 class ReusableTextFormField extends StatefulWidget {
   const ReusableTextFormField(
@@ -115,11 +115,11 @@ class _ReusableTextFormFieldState extends State<ReusableTextFormField> {
           /**Label text and style*/
           labelText: widget.labelText,
           contentPadding:  EdgeInsets.fromLTRB(widget.paddingLeft?? 16, widget.paddingTop ??16, widget.paddingRight ??16, widget.paddingBottom??16 ),
-          labelStyle: const TextStyle(color: AppColors.primaryBlue),
-          focusColor: widget.mFocusColor ?? AppColors.primaryBlue,
+          labelStyle: const TextStyle(color: AppColors.deepPurple),
+          focusColor: widget.mFocusColor ?? AppColors.deepPurple,
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                color: widget.mFocusColor ?? AppColors.primaryBlue,
+                color: widget.mFocusColor ?? AppColors.deepPurple,
                 width: widget.mFocusBorderWidth ?? 1.0),
             borderRadius: BorderRadius.circular(widget.borderRadius ?? 10.0),
           ),
@@ -130,7 +130,7 @@ class _ReusableTextFormFieldState extends State<ReusableTextFormField> {
               BorderRadius.circular(widget.borderRadius ?? 10.0)),
           border: OutlineInputBorder(
               borderSide: BorderSide(
-                  color: widget.mBorderColor ?? AppColors.primaryBlue),
+                  color: widget.mBorderColor ?? AppColors.deepPurple),
               borderRadius:
               BorderRadius.circular(widget.borderRadius ?? 10.0))),
     );

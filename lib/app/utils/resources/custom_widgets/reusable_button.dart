@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../themes/theme_colors.dart';
-import '../app_fonts.dart';
+import '../other/app_fonts.dart';
 
 
 

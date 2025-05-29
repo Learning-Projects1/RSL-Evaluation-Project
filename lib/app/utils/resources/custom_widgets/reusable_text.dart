@@ -3,8 +3,10 @@
 
 import 'package:flutter/material.dart';
 
-import '../app_fonts.dart';
-import '../app_size_config.dart';
+import '../other/app_fonts.dart';
+import '../other/app_size_config.dart';
+
+
 
 class ReusableText extends StatefulWidget {
   const ReusableText({

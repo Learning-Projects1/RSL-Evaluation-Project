@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/utils/resources/custom_widgets/reusable_text.dart';
 
-import '../app_size_config.dart';
-import '../widget_functions.dart';
+import '../other/app_size_config.dart';
+import '../other/widget_functions.dart';
 
 
 void showLoadingDialog( bool? showLoading) {
@@ -65,7 +65,7 @@ void showLoadingDialog( bool? showLoading) {
       },
     );
   }else{
-    Navigator.pop(Get.context!);
+    Get.back();
   }
 
 
