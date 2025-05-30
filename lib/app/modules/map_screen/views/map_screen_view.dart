@@ -33,7 +33,7 @@ class MapScreenView extends GetView<MapScreenController> {
           children: [
             TileLayer(
               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              userAgentPackageName: '',
+              userAgentPackageName: 'com.example.rls_evaluation_project_supervisor_attendance_app',
             ),
             MarkerLayer(
               markers: [
