@@ -13,6 +13,26 @@
     - Routing
     - Dependency injection
 
+
+### 📦 Dependencies Used
+- This project makes use of the following Dart/Flutter packages:
+- **cupertino_icons** – iOS-style icons for Cupertino widgets.
+- **shared_preferences** – For storing simple key-value pairs persistently.
+- **flutter_svg** – Rendering SVG images in Flutter.
+- **get** – State management, route management, and dependency injection.
+- **crypto** – Cryptographic functions like hashing.
+- **another_flushbar** – Highly customizable in-app notification bars.
+- **geolocator** – Fetching location and handling geolocation permissions.
+- **hive** – Lightweight and fast key-value database.
+- **hive_flutter** – Extension for Hive with Flutter integration.
+- **path_provider** – Finding commonly used locations on the filesystem.
+- **hive_generator** – Code generator for Hive TypeAdapters.
+- **build_runner** – Code generation backend used for hive_generator and other builders.
+- **intl** – Internationalization and localization support.
+- **flutter_map** – Flexible map implementation based on Leaflet.
+- **latlong2** – Library for geographical calculations used with flutter_map.
+
+
 ### Accounts
 1. Syed Baber Mehmood
    Email : syed@gmail.com
