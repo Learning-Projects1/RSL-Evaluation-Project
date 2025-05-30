@@ -69,13 +69,14 @@ class AttendanceView extends GetView<AttendanceController> {
                                       width: 72,
                                       height: 42,
                                       decoration: BoxDecoration(
+                                        color: Colors.white,
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: const Center(
                                         child: ReusableText(
                                           text: "Logout",
                                           fontWeight: FontWeight.w600,
-                                          color: AppColors.white,
+                                          color: AppColors.primaryBlack,
                                         ),
                                       )
                                   ),
@@ -84,7 +85,7 @@ class AttendanceView extends GetView<AttendanceController> {
                             ),
 
 
-                            ///Attendance text
+                            ///Attendance heading
                             const ReusableText(
                               text: "Attendance",
                               fontSize: 20,
@@ -131,7 +132,7 @@ class AttendanceView extends GetView<AttendanceController> {
 
                       ///Live date time
                       Obx(() {
-                        final formattedTime = DateFormat('dd MMM yyyy – kk:mm:ss')
+                        final formattedTime = DateFormat('dd MMM yyyy – hh:mm:ss a')
                             .format(controller.currentTime.value);
 
                         return Row(

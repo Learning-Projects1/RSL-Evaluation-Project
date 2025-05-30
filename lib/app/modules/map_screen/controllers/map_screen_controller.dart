@@ -12,14 +12,17 @@ import '../../../utils/resources/other/FlushBar.dart';
 import '../../../utils/resources/other/preferences_keys.dart';
 
 class MapScreenController extends GetxController {
+
+
   final Rx<LatLng?> currentLocation = Rx<LatLng?>(null);
   final Rx<LatLng?> assignedLocation = Rx<LatLng?>(null);
   final double radiusInMeters = 100;
 
   final RxDouble currentZoom = 15.0.obs;
 
-  final double baseRadius = 100; // in meters
+  final double baseRadius = 100; /// in meters
   final double baseZoom = 15;
+
 
   @override
   void onInit() {
@@ -35,6 +38,7 @@ class MapScreenController extends GetxController {
   }
 
 
+  ///Getting current location
   Future<void> getCurrentLocation() async {
     final hasPermission = await checkAndGetLocationPermissions();
     if (!hasPermission) return;
@@ -49,6 +53,7 @@ class MapScreenController extends GetxController {
     }
   }
 
+  ///Getting assigned location for current user
   Future<void> getAssignedLocation() async {
     try {
       final String usersData = await rootBundle.loadString('assets/data/user_data.json');
@@ -76,6 +81,7 @@ class MapScreenController extends GetxController {
     }
   }
 
+  ///Checking location permissions
   Future<bool> checkAndGetLocationPermissions() async {
     try {
       final serviceEnabled = await Geolocator.isLocationServiceEnabled();

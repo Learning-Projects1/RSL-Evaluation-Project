@@ -24,11 +24,12 @@ class HistoryView extends GetView<HistoryController> {
       body: Column(
         children: [
 
-          ///Appbar and list
+
           Expanded(
             child: Stack(
               children: [
 
+                ///Appbar
                 Align(
                   alignment: Alignment.topCenter,
                   child: Card(
@@ -67,28 +68,37 @@ class HistoryView extends GetView<HistoryController> {
                   ),
                 ),
 
-                ///Listview builder
+
                 Padding(
                   padding: const EdgeInsets.only(top: 150),
                   child: SizedBox(
                     height: double.infinity,
 
                     child: Obx(() {
+
+                      ///Loading state
                       if (controller.isLoading.value) {
                         return const Center(child: CircularProgressIndicator());
                       }
 
-                      if (controller.attendanceList.isEmpty) {
-                        return const Center(child: Text('No data found.'));
-                      }
-
                       return RefreshIndicator(
                         onRefresh: controller.loadAttendanceHistory,
-                        child: ListView.builder(
+                        child: controller.attendanceList.isEmpty
+
+                        ///No data found state
+                            ? ListView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          children: const [
+                            SizedBox(height: 300), // Adding enough height to allow pull
+                            Center(child: ReusableText(text: 'No data found.', fontWeight: FontWeight.bold,)),
+                          ],
+                        )
+
+                        /// List builder, if data found
+                            : ListView.builder(
                           physics: const AlwaysScrollableScrollPhysics(),
                           itemCount: controller.attendanceList.length,
                           itemBuilder: (context, index) {
-
                             final record = controller.attendanceList[index];
 
                             return Card(
@@ -99,7 +109,6 @@ class HistoryView extends GetView<HistoryController> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // Leading Icon
                                     Padding(
                                       padding: const EdgeInsets.only(right: 12),
                                       child: Icon(
@@ -108,21 +117,18 @@ class HistoryView extends GetView<HistoryController> {
                                         size: 32,
                                       ),
                                     ),
-
-                                    // Main Column
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-
                                           addVerticalSpace(8),
-                                          ReusableText(text: "Status: ${record.status}", fontWeight: FontWeight.bold, fontSize: 16,),
-
+                                          ReusableText(
+                                            text: "Status: ${record.status}",
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                          ),
                                           addVerticalSpace(8),
-
-
                                           ReusableText(text: dateTimeFormatter(record.dateTime)),
-
                                           addVerticalSpace(10),
                                           ReusableText(text: "Latitude: ${record.latitude}"),
                                           ReusableText(text: "Longitude: ${record.longitude}"),
@@ -137,7 +143,8 @@ class HistoryView extends GetView<HistoryController> {
                           },
                         ),
                       );
-                    })
+                    }),
+
                   ),
                 ),
 
