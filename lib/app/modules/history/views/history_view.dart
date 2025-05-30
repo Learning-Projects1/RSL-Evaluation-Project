@@ -115,14 +115,15 @@ class HistoryView extends GetView<HistoryController> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
 
-                                          ReusableText(text: "Status: ${record.status}"),
+                                          addVerticalSpace(8),
+                                          ReusableText(text: "Status: ${record.status}", fontWeight: FontWeight.bold, fontSize: 16,),
 
-                                          addVerticalSpace(6),
+                                          addVerticalSpace(8),
 
 
                                           ReusableText(text: dateTimeFormatter(record.dateTime)),
 
-                                          addVerticalSpace(4),
+                                          addVerticalSpace(10),
                                           ReusableText(text: "Latitude: ${record.latitude}"),
                                           ReusableText(text: "Longitude: ${record.longitude}"),
                                           addVerticalSpace(4),

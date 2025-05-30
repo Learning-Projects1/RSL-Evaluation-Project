@@ -35,5 +35,10 @@ class AppPreferences {
     return prefs.getDouble(key) ?? 0.0;
   }
 
+  static Future<void> clearPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+
 
 }

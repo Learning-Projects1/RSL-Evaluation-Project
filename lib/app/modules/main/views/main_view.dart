@@ -8,7 +8,7 @@ import 'package:rls_evaluation_project_supervisor_attendance_app/app/modules/att
 import '../../../utils/resources/other/app_fonts.dart';
 import '../../../utils/themes/theme_colors.dart';
 import '../../history/views/history_view.dart';
-import '../../map/views/map_screen_view.dart';
+import '../../map_screen/views/map_screen_view.dart';
 import '../controllers/main_controller.dart';
 
 class MainView extends GetView<MainController> {

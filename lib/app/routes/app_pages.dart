@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:rls_evaluation_project_supervisor_attendance_app/app/modules/map/bindings/map_bindings.dart';
-import 'package:rls_evaluation_project_supervisor_attendance_app/app/modules/map/views/map_screen_view.dart';
 
 import '../modules/attendance/bindings/attendance_binding.dart';
 import '../modules/attendance/views/attendance_view.dart';
@@ -10,6 +8,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
+import '../modules/map_screen/bindings/map_screen_binding.dart';
+import '../modules/map_screen/views/map_screen_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -47,9 +47,9 @@ class AppPages {
       binding: SplashBinding(),
     ),
     GetPage(
-      name: _Paths.MAP,
+      name: _Paths.MAP_SCREEN,
       page: () => const MapScreenView(),
-      binding: MapScreenBindings(),
+      binding: MapScreenBinding(),
     ),
   ];
 }

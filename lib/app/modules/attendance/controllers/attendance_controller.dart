@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:rls_evaluation_project_supervisor_attendance_app/app/routes/app_pages.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/utils/resources/helper_functions/app_preferences.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/utils/resources/other/FlushBar.dart';
 import 'package:rls_evaluation_project_supervisor_attendance_app/app/utils/resources/other/constants.dart';
@@ -19,18 +21,30 @@ class AttendanceController extends GetxController {
   double targetLat = 0.0;
   double targetLng = 0.0;
   double distanceInMeters = 0.0;
+  var currentTime = DateTime.now().obs;
+  var userName = ''.obs;
+
+  Timer? _timer;
 
   late Box attendanceBox;
 
   @override
-  void onInit(){
+  Future<void> onInit() async {
     super.onInit();
 
-    openBox();
+    await openBox();
+
+    _loadUserName();
+    _startClock();
 
   }
 
   Future openBox() async {
+
+    try{
+      Hive.registerAdapter(AttendanceModelAdapter());
+    }catch(e){}
+
     var dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);
     attendanceBox = await Hive.openBox('attendanceBox');
@@ -39,47 +53,68 @@ class AttendanceController extends GetxController {
 
   Future<void> onMarkAttendanceClicked() async {
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showLoadingDialog(true);
-    });
+    var isLocationPermissionGranted = await checkAndGetLocationPermissions();
 
-    await getCurrentLocation();
+    debugPrint("isLocationPermissionGranted: $isLocationPermissionGranted");
 
-    await getAssignedLocation();
+    if(isLocationPermissionGranted){
 
-    await calculateDistanceAndMarkAttendance();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showLoadingDialog(true);
+      });
 
 
+      await getCurrentLocation();
+
+      await getAssignedLocation();
+
+      await calculateDistanceAndMarkAttendance();
+    }
   }
+
+
+  Future<bool> checkAndGetLocationPermissions() async {
+    try {
+      ///Checking if location services are enabled
+      final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        FlushBars.error("Location services are disabled.");
+        return false;
+      }
+
+      ///Checking permissions
+      LocationPermission permission = await Geolocator.checkPermission();
+
+      if (permission == LocationPermission.denied) {
+        /// Requesting permission if it's denied
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          FlushBars.error("Location permission denied.");
+          return false;
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        /// Permissions are permanently denied
+        FlushBars.error("Location permissions are permanently denied. Please enable them from settings.");
+        return false;
+      }
+
+      return true;
+
+    } catch (e) {
+      FlushBars.error("An error occurred while checking location permissions.");
+      return false;
+    }
+  }
+
+
 
 
 
   /// Getting current location
   Future<void> getCurrentLocation() async {
     try{
-
-
-      ///Checking if location services are enabled
-      final serviceEnabled = await Geolocator.isLocationServiceEnabled();
-      if (!serviceEnabled) {
-        FlushBars.error("Location services are disabled.");
-      }
-
-      ///Checking and requesting permissions
-      LocationPermission permission = await Geolocator.checkPermission();
-      if (permission == LocationPermission.denied) {
-
-        permission = await Geolocator.requestPermission();
-
-        if (permission == LocationPermission.denied) {
-          FlushBars.error("Location permission denied.");
-        }
-
-      }
-
-      if (permission == LocationPermission.deniedForever) {
-        FlushBars.error("Location permissions are permanently denied.");
-      }
 
 
 
@@ -177,11 +212,29 @@ class AttendanceController extends GetxController {
     await attendanceBox.add(attendance);
   }
 
-  void logoutUser() {
-    // AppPreferences.getPrefString(key)
+  Future<void> logoutUser() async {
+    await AppPreferences.clearPrefs();
+
+    Get.offAllNamed(Routes.LOGIN);
   }
 
 
+
+  void _startClock() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      currentTime.value = DateTime.now();
+    });
+  }
+
+  Future<void> _loadUserName() async {
+    userName.value = await AppPreferences.getPrefString(PreferenceKeys.name);
+  }
+
+  @override
+  void onClose() {
+    _timer?.cancel();
+    super.onClose();
+  }
 
 
 

@@ -22,7 +22,7 @@ Future<void> main() async {
 }
 
 void registerHiveAdapters() {
-  Hive.registerAdapter(AttendanceModelAdapter());
+  // Hive.registerAdapter(AttendanceModelAdapter());
 }
 
 class MyApp extends StatelessWidget {

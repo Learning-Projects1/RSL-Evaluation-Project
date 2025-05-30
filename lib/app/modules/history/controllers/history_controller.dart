@@ -29,6 +29,11 @@ class HistoryController extends GetxController {
   }
 
   Future openBox() async {
+
+    try{
+      Hive.registerAdapter(AttendanceModelAdapter());
+    }catch(e){}
+
     var dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);
     attendanceBox = await Hive.openBox('attendanceBox');

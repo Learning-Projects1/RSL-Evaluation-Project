@@ -11,15 +11,15 @@
       "email": "albert@gmail.com",
       "hashedPassword": "55f08df67d70ac75ebd49c5dd7382c2d17f5f9fc0eb0fb55fb91f4d97d5c8385",
       "name": "Albert Einstien",
-      "latitude": 25.276987,
-      "longitude": 55.296249
+      "latitude": 25.23256005560213,
+      "longitude": 55.55575122883488
     },
     {
       "email": "qasim@gmail.com",
       "hashedPassword": "233286a309d86399242b8aa6a22e79a1c2c48b219a921671012f0ff6eb1f0488",
       "name": "Qasim Naveed",
-      "latitude": 25.276456,
-      "longitude": 55.297865
+      "latitude": 25.0012524,
+      "longitude": 55.1542666
     }
   ]
 }

@@ -9,6 +9,7 @@ abstract class Routes {
   static const HISTORY = _Paths.HISTORY;
   static const SPLASH = _Paths.SPLASH;
   static const MAP = _Paths.MAP;
+  static const MAP_SCREEN = _Paths.MAP_SCREEN;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const HISTORY = '/history';
   static const SPLASH = '/splash';
   static const MAP = '/map';
+  static const MAP_SCREEN = '/map-screen';
 }
